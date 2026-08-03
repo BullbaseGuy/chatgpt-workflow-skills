@@ -1,0 +1,15 @@
+schema_version: 1.0.0
+input:
+  actions_url: https://github.com/acme/repo/actions/runs/123
+expected_read_order:
+- AGENTS.md
+- docs/implementation/ACTIVE_TASKS.yaml
+- task_state.yaml
+- dependency_graph.yaml
+- HANDOFF.md
+- current Wxx plan/result
+- GitHub run reality
+must_not:
+- ask user to restate task
+- trust stale handoff over GitHub
+- rerun completed checkpoint

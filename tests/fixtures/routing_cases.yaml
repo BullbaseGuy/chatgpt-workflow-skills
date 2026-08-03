@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+cases:
+- id: new-plan
+  prompt: 先制定一个plan并输出给我确认
+  expected_primary: task-to-spec
+  decision_mode: APPROVAL
+- id: approved-start
+  prompt: 确认按方案执行，从W00开始连续执行
+  expected_primary: task-to-spec
+  expected_sequence:
+  - task-to-spec
+  - frontier-planner
+  - execution-supervisor
+  decision_mode: AUTO
+- id: resume-run
+  prompt: https://github.com/acme/repo/actions/runs/123 检查进度并继续执行
+  expected_primary: durable-handoff
+  expected_sequence:
+  - durable-handoff
+  - execution-supervisor
+  decision_mode: AUTO
+- id: reported-bug
+  prompt: 运行报错了，先排查原因再修复，不要盲目重跑
+  expected_primary: diagnose-before-retry
+  decision_mode: AUTO
+- id: research
+  prompt: 分析这个项目并用官方资料验证结论
+  expected_primary: evidence-research
+  decision_mode: AUTO
+- id: manual-setup
+  prompt: 这个GitHub Secret页面我应该怎么一步步配置
+  expected_primary: manual-wizard-powershell
+  decision_mode: AUTO
+- id: review
+  prompt: 校验这次修复是否真的完成并符合最初要求
+  expected_primary: acceptance-review
+  decision_mode: AUTO
