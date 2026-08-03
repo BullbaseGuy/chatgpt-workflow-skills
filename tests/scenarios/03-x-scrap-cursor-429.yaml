@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+scenario_id: X-SCRAP-CURSOR-429
+title: Export stops with a pagination cursor remaining after HTTP 429
+scenario_type: cursor_and_rate_limit
+facts:
+  cursor_remaining: true
+  http_status: 429
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: true
+  changed_variable: resume_from_saved_cursor_after_verified_backoff
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PENDING, spec: PENDING, evidence: PENDING}
+  preserve_evidence: true
+  evidence_paths: [checkpoints/cursor.json, logs/429-window.jsonl, repro/replay.yaml]
+  resume_locator: {task_id: x-scrap-export, checkpoint: checkpoints/cursor.json}
+  next_action: replay the minimized request window, verify exit conditions, then resume from the saved cursor
+expected:
+  decision: DIAGNOSE_AND_RESUME_FROM_CURSOR
+  task_status: BLOCKED_AUTO
+  human_gate: null
+  rerun: true
