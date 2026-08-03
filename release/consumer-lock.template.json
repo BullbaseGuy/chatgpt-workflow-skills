@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "source_repository": "BullbaseGuy/chatgpt-workflow-skills",
+  "revision": "0123456789abcdef0123456789abcdef01234567",
+  "manifest_path": "release/skills-manifest.json",
+  "manifest_git_blob_sha": "REPLACED_BY_INSTALLER",
+  "install_root": ".agents/workflow-skills",
+  "release_version": "1.0.0-rc.1",
+  "installed_file_count": 28,
+  "installed_at_utc": "GENERATED_BY_INSTALLER"
+}
