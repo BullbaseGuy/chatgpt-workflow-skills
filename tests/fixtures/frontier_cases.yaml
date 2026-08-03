@@ -1,0 +1,19 @@
+schema_version: 1.0.0
+cases:
+  - id: linear
+    expected_frontier: [W01]
+    packages:
+      - {id: W00, status: DONE, blocked_by: []}
+      - {id: W01, status: READY, blocked_by: [W00]}
+      - {id: W02, status: BLOCKED, blocked_by: [W01]}
+  - id: parallel
+    expected_frontier: [W01, W02]
+    packages:
+      - {id: W00, status: DONE, blocked_by: []}
+      - {id: W01, status: READY, blocked_by: [W00]}
+      - {id: W02, status: READY, blocked_by: [W00]}
+  - id: cycle
+    expected_error: dependency cycle
+    packages:
+      - {id: W01, status: READY, blocked_by: [W02]}
+      - {id: W02, status: READY, blocked_by: [W01]}

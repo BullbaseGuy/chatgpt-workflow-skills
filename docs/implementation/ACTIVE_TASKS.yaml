@@ -1,5 +1,5 @@
 schema_version: 1.0.0
-updated_at_utc: '2026-08-03T15:40:00Z'
+updated_at_utc: '2026-08-03T15:47:00Z'
 active_tasks:
 - task_id: chatgpt-workflow-skills-v1
   title: Build reusable ChatGPT Web + GitHub Actions workflow skills
@@ -7,4 +7,4 @@ active_tasks:
   branch: agent/chatgpt-workflow-skills-v1
   state_path: docs/implementation/chatgpt-workflow-skills-v1/task_state.yaml
   status: RUNNING
-  current_work_package: W03
+  current_work_package: W04
