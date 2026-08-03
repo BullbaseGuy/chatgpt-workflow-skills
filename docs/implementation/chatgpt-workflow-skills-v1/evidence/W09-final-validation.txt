@@ -1,0 +1,52 @@
+W09 final integration validation
+UTC: 2026-08-03T17:24:23Z
+
+Skills source repository
+- Pull request: BullbaseGuy/chatgpt-workflow-skills#1 (draft, reviewable)
+- Release payload commit: 74a3cb0cf4eebb406782ca3360318f1dce0f6c6d
+- Validate install compatibility run 30835973435: SUCCESS
+  - linux-release: SUCCESS
+  - windows-powershell: SUCCESS
+- Validate workflow skills run 30835973467: SUCCESS
+
+Scaffold repository
+- Pull request: BullbaseGuy/demo-project#2 (draft, reviewable)
+- Final integration head: 5ec5e09ed488d6a2ca4c39d68a4804fc3408cbba
+- Changed files: 8
+- Copied SKILL.md bodies: 0
+- Lock revision: 74a3cb0cf4eebb406782ca3360318f1dce0f6c6d
+- Manifest Git blob: e40d71b0ad6d7fb31de9499996ad9d514d4e8b8f
+- Installer Git blob: 6b9c1c5455f9e775344d6abfc1db10aa57b41ecb
+- Test run 30836366525: SUCCESS
+- Upgrade Compatibility run 30836366028: SUCCESS
+- Workflow Skills Compatibility run 30836366871: SUCCESS
+  - immutable lock/manifest validation: SUCCESS
+  - Windows pinned installer twice: SUCCESS
+- State Consistency run 30836366162: SUCCESS
+
+Historical and local evidence
+- W07 historical scenarios: 7/7 PASS
+- W07 mutation tests: 4/4 PASS
+- W08 release/install tests: 5/5 PASS
+- demo-project lock tests: 5/5 PASS
+- fresh-session task-id recovery scenario: PASS
+
+Diagnosed failures resolved without blind reruns
+1. demo-project Ruff I001 was reproduced from the Test and State logs; import ordering and one canonical blank-line difference were fixed, and temporary diagnosis instrumentation was removed.
+2. skills source setup-python cache failure was traced to a missing explicit dependency path and fixed with requirements-dev.txt.
+3. Windows offline installer blob mismatch was traced to CRLF checkout bytes; valid UTF-8 text is now normalized to Git LF bytes before immutable verification.
+
+Final axes
+- Standards: PASS
+- Spec: PASS
+- Evidence: PASS
+- Security: PASS
+- Resume: PASS
+- Overall: PASS
+
+Security facts
+- model_execution.enabled=false
+- codex_invocations=0
+- no Gmail or external email execution dependency
+- no credentials, private endpoints, or secret-derived values introduced
+- no unpinned branch/tag accepted by the consumer installer
