@@ -6,17 +6,23 @@
 - Branch: `agent/chatgpt-workflow-skills-v1`
 
 ## Verified completed
-- W00–W03 core contracts, first five skills, state/frontier/heartbeat validators, and CI.
-- W04 diagnose-before-retry skill, repro-manifest schema/validator, failure index, and regression tests.
-- A real W03 regex failure was captured, minimized, diagnosed, fixed, and preserved as a valid fixture.
+- W00–W04 adoption, common rules, routing/spec/handoff, frontier supervision, and diagnosis gates.
+- W05 evidence research, architecture review, and independent acceptance review.
+- Evidence and acceptance validators reject unsupported inference, fabricated non-disclosure values,
+  one-sided conflicts, secret retention, and completion with any failing axis.
+- 9 skills and 22 deterministic tests pass locally.
 - Codex/model invocation count remains `0`.
 
 ## Current frontier
-- `W05` — evidence research and three-axis acceptance.
+- `W06` — PowerShell manual wizard skill, template/library, static safety checks, and fixtures.
 
 ## Active blockers
 None.
 
 ## Exact next action
-Implement evidence records, research and acceptance skills, validators, and conflict/not-disclosed
-fixtures; run all checks, write W05 result, and continue to W06.
+Implement W06 with PowerShell 7, idempotent writes, secure input, GitHub secret stdin handling,
+destructive confirmation, static validation, and tests; write W06 result and continue to W07.
+
+## Do not repeat
+Architecture review is now assigned and implemented in W05. Evidence classifications and the
+five-axis completion gate are settled.

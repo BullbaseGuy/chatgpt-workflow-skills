@@ -40,5 +40,13 @@ jobs:
       - name: Validate reproduction manifest
         run: python scripts/validate_repro.py tests/fixtures/repro_manifest_valid.yaml
 
+      - name: Validate evidence fixtures
+        run: |
+          python scripts/validate_evidence.py tests/fixtures/evidence_valid.jsonl
+          python scripts/validate_evidence.py docs/implementation/chatgpt-workflow-skills-v1/evidence.jsonl
+
+      - name: Validate acceptance fixture
+        run: python scripts/validate_acceptance.py tests/fixtures/acceptance_pass.yaml --require-completion
+
       - name: Run deterministic tests
         run: python -m unittest discover -s tests -p "test_*.py" -v

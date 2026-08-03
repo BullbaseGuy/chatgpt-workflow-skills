@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+task_id: fixture
+base_ref: main
+head_ref: agent/fixture
+as_of_utc: '2026-08-03T15:55:00Z'
+axes:
+  standards:
+    verdict: PASS
+    findings: []
+    evidence_ids: []
+  spec:
+    verdict: FAIL
+    findings:
+    - Required behavior is absent
+    evidence_ids: []
+  evidence:
+    verdict: FAIL
+    findings:
+    - No real run evidence
+    evidence_ids: []
+  security:
+    verdict: PASS
+    findings: []
+    evidence_ids: []
+  resume:
+    verdict: PASS
+    findings: []
+    evidence_ids: []
+overall: FAIL
+approved_gaps: []
+gaps_authorized: false
