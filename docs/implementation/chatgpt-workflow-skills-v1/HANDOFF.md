@@ -1,43 +1,31 @@
 # Durable Handoff
 
 ## Task identity
-
 - **Task ID:** `chatgpt-workflow-skills-v1`
 - **Repository:** `BullbaseGuy/chatgpt-workflow-skills`
 - **Branch:** `agent/chatgpt-workflow-skills-v1`
 - **Canonical state:** `docs/implementation/chatgpt-workflow-skills-v1/task_state.yaml`
-- **Dependency graph:** `docs/implementation/chatgpt-workflow-skills-v1/dependency_graph.yaml`
 
 ## Destination
-
-Deliver and validate ten reusable skills, their shared references/templates, historical
-regression scenarios, dual ChatGPT deployment paths, and a non-duplicating integration
-with `BullbaseGuy/demo-project`.
+Deliver the reusable skill system, deployment paths, historical regressions, and scaffold integration.
 
 ## Verified completed
-
-- W00 adoption baseline and license reconciliation are complete.
-- The upstream source revision and scaffold baseline are pinned.
-- The repository contract, glossary, ADR, adoption matrix, conflict resolutions, canonical
-  task state, dependency graph, and handoff entry point exist.
+- W00 adoption, conflict, and license baseline.
+- W01 operating contract, decision policy, task-state schema, evidence schema, quality gates,
+  failure taxonomy, output contract, and five durable templates.
+- YAML examples and canonical task state parse successfully.
 - Codex/model invocation count remains `0`.
 
 ## Current frontier
+- `W02` — implement `workflow-router`, `task-to-spec`, and `durable-handoff`.
 
-- `W01` — terminology, state, failure, and decision model.
-
-## Active blocker
-
+## Active blockers
 None.
 
 ## Exact next action
+Implement the three W02 skills using references rather than copied rules, run structural and
+routing fixtures, write `W02_result.md`, and move the frontier to W03.
 
-Read `W01_plan.md` when present, implement the seven shared reference documents and five
-templates, validate their internal links and YAML examples, write `W01_result.md`, then move
-the frontier to W02 without asking the user to continue.
-
-## Resume rule
-
-A new session receiving only the task ID, an Issue/PR URL, or an Actions URL must resolve
-this file through `ACTIVE_TASKS.yaml`, read canonical state, verify the remote run/branch,
-and continue from the frontier. It must not ask the user to restate prior decisions.
+## Do not repeat
+The role split, AUTO default, PowerShell-first rule, no-Gmail rule, no-blind-rerun rule,
+single-source rule, and Codex=0 baseline are already decided.
