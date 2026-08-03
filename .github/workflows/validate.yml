@@ -54,6 +54,9 @@ jobs:
           --manifest examples/manual-wizard/stages.example.json
           --script templates/manual-wizard.template.ps1
 
+      - name: Validate pinned release manifest
+        run: python scripts/validate_release.py
+
       - name: Run historical workflow regressions
         run: python scripts/run_regression_scenarios.py
 
