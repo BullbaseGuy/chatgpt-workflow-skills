@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+task_id: chatgpt-workflow-skills-v1
+work_packages:
+- id: W00
+  title: Adoption matrix, conflict reconciliation, and licensing
+  blocked_by: []
+- id: W01
+  title: Terminology, state, failure, and decision model
+  blocked_by:
+  - W00
+- id: W02
+  title: Router, specification, and durable handoff skills
+  blocked_by:
+  - W01
+- id: W03
+  title: Frontier planner and execution supervisor
+  blocked_by:
+  - W02
+- id: W04
+  title: Diagnose-before-retry discipline
+  blocked_by:
+  - W03
+- id: W05
+  title: Evidence research and three-axis acceptance
+  blocked_by:
+  - W04
+- id: W06
+  title: PowerShell manual wizard
+  blocked_by:
+  - W05
+- id: W07
+  title: Historical scenario regression
+  blocked_by:
+  - W06
+- id: W08
+  title: ChatGPT Skills and Project deployment paths
+  blocked_by:
+  - W07
+- id: W09
+  title: demo-project integration and final acceptance
+  blocked_by:
+  - W08
