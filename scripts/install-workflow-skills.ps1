@@ -42,6 +42,19 @@ function Assert-RelativePath {
     }
 }
 
+function ConvertTo-GitTextBytes {
+    param([Parameter(Mandatory = $true)][byte[]]$Bytes, [string]$Path)
+    $utf8 = [Text.UTF8Encoding]::new($false, $true)
+    try {
+        $text = $utf8.GetString($Bytes)
+    }
+    catch {
+        throw "Offline payload must be valid UTF-8 text: $Path"
+    }
+    $normalized = $text.Replace("`r`n", "`n").Replace("`r", "`n")
+    return $utf8.GetBytes($normalized)
+}
+
 function Get-SourceBytes {
     param([Parameter(Mandatory = $true)][string]$Path)
     Assert-RelativePath -Value $Path -Name 'source path'
@@ -50,7 +63,8 @@ function Get-SourceBytes {
         if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
             throw "Offline source file not found: $source"
         }
-        return [IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $source))
+        $workingTreeBytes = [IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $source))
+        return ConvertTo-GitTextBytes -Bytes $workingTreeBytes -Path $Path
     }
 
     $escaped = ($Path -split '/' | ForEach-Object { [Uri]::EscapeDataString($_) }) -join '/'
