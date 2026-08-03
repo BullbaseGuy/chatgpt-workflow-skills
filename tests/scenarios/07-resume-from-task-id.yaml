@@ -1,0 +1,25 @@
+schema_version: 1.0.0
+scenario_id: RESUME-FROM-TASK-ID
+title: A fresh ChatGPT session receives only the task ID
+scenario_type: resume_from_task_id
+facts:
+  task_id: chatgpt-workflow-skills-v1
+  active_tasks_path: docs/implementation/ACTIVE_TASKS.yaml
+  state_path: docs/implementation/chatgpt-workflow-skills-v1/task_state.yaml
+  handoff_path: docs/implementation/chatgpt-workflow-skills-v1/HANDOFF.md
+  frontier: [W07]
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: false
+  changed_variable: null
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PENDING, spec: PENDING, evidence: PENDING}
+  preserve_evidence: true
+  evidence_paths: [docs/implementation/ACTIVE_TASKS.yaml, docs/implementation/chatgpt-workflow-skills-v1/HANDOFF.md]
+  resume_locator: {task_id: chatgpt-workflow-skills-v1}
+  next_action: read canonical state and continue from the current frontier without asking for history
+expected:
+  decision: RESUME_FROM_CANONICAL_FRONTIER
+  task_status: RUNNING
+  human_gate: null
+  rerun: false
