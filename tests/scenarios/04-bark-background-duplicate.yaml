@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+scenario_id: BARK-BACKGROUND-DUPLICATE
+title: Background tab notification fires late or duplicates after returning to the tab
+scenario_type: background_notification_duplicate
+facts:
+  automated_harness_ready: true
+  physical_device_confirmation_required: true
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: true
+  changed_variable: deterministic_visibility_and_dom_event_trace
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PASS, spec: PENDING, evidence: PENDING}
+  preserve_evidence: true
+  evidence_paths: [fixtures/dom-sequence.json, traces/visibility-events.jsonl]
+  resume_locator: {task_id: bark-notifier, checkpoint: traces/visibility-events.jsonl}
+  next_action: run the browser harness, then ask once for real-device notification acceptance
+expected:
+  decision: RUN_HARNESS_THEN_REQUEST_DEVICE_ACCEPTANCE
+  task_status: NEEDS_HUMAN
+  human_gate: MANUAL_NOTIFICATION_ACCEPTANCE
+  rerun: false
