@@ -1,0 +1,44 @@
+W08 dual deployment validation
+UTC: 2026-08-03T16:58:11Z
+Release candidate commit: 22e10ad9fef0a0de828dfe0b48fafa1802928019
+
+Manifest inventory:
+- files: 28
+- skills: 10
+- references: 9
+- templates: 7
+- licenses: 2
+- revision policy: exact-40-hex-commit
+- per-file identity: Git blob SHA
+
+Commands:
+  python -m compileall -q scripts tests
+  python -m unittest tests.test_release -v
+Result:
+  Ran 5 tests
+  OK
+
+Tested behavior:
+- valid manifest accepted
+- exact revision required; branch name rejected
+- first install returns INSTALLED
+- second verified install returns UNCHANGED
+- modified installed file is rejected as a blob mismatch
+- missing context pointer is rejected
+- 10 native skill bundles are generated from one source tree
+
+Static PowerShell checks:
+- PowerShell 7 required
+- no Invoke-Expression
+- remote paths use an exact 40-character commit
+- files are staged and verified before atomic replacement
+- secrets are not accepted or written by the installer
+
+Remote execution evidence:
+- `.github/workflows/install-compatibility.yml` runs the installer on windows-latest twice.
+- `.github/workflows/validate.yml` validates the release manifest.
+- The current local environment has no pwsh executable; no local PowerShell PASS is claimed.
+
+Codex/model execution:
+  enabled=false
+  codex_invocations=0
