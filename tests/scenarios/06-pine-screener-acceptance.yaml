@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+scenario_id: PINE-COMPILE-UI-MISMATCH
+title: Pine Screener compiles but default columns and filter behavior do not match the contract
+scenario_type: screener_acceptance
+facts:
+  compile_pass: true
+  ui_contract_pass: false
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: true
+  changed_variable: default_column_and_filter_contract_fixture
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PASS, spec: FAIL, evidence: PASS}
+  preserve_evidence: true
+  evidence_paths: [evidence/compiler.txt, fixtures/default-columns.yaml, screenshots/ui-check.png]
+  resume_locator: {task_id: pine-screener, checkpoint: fixtures/default-columns.yaml}
+  next_action: reject completion, fix the UI contract, then request one TradingView acceptance check
+expected:
+  decision: REJECT_PREMATURE_ACCEPTANCE_AND_REQUEST_UI_CHECK
+  task_status: NEEDS_HUMAN
+  human_gate: MANUAL_UI_ACCEPTANCE
+  rerun: false
