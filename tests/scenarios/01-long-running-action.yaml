@@ -1,0 +1,25 @@
+schema_version: 1.0.0
+scenario_id: ACTION-LIVE-HEARTBEAT
+title: GitHub Action runs for a long time but still has heartbeat and progress
+scenario_type: long_running_action
+facts:
+  run_status: in_progress
+  heartbeat_age_minutes: 4
+  active_threshold_minutes: 15
+  progress_before: 49
+  progress_after: 50
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: false
+  changed_variable: null
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PENDING, spec: PENDING, evidence: PENDING}
+  preserve_evidence: true
+  evidence_paths: [actions/run.json, logs/heartbeat.jsonl]
+  resume_locator: {task_id: example, run_url: https://github.com/example/run}
+  next_action: continue monitoring the same run; do not dispatch another run
+expected:
+  decision: CONTINUE_MONITORING
+  task_status: RUNNING
+  human_gate: null
+  rerun: false
