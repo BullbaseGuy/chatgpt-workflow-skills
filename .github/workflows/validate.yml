@@ -37,5 +37,8 @@ jobs:
       - name: Validate active task state
         run: python scripts/validate_state.py --all-active --enforce-model-zero
 
+      - name: Validate reproduction manifest
+        run: python scripts/validate_repro.py tests/fixtures/repro_manifest_valid.yaml
+
       - name: Run deterministic tests
         run: python -m unittest discover -s tests -p "test_*.py" -v

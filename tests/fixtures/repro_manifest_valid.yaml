@@ -1,0 +1,48 @@
+schema_version: 1.0.0
+failure_id: FAIL-EXAMPLE-001
+failure_class: DETERMINISTIC_PRODUCT
+exact_symptom: The routing validator fails to detect frontmatter name fields.
+original_invocation: python scripts/validate_skills.py
+checkpoints_preserved:
+- W00
+- W01
+- W02
+feedback_loop:
+  invocation: python scripts/validate_skills.py
+  assertion: Validator exits nonzero and reports missing frontmatter names on valid
+    skills.
+  red_observed: true
+  red_output: 'Skill validation failed: missing frontmatter name'
+  deterministic: true
+  typical_runtime_seconds: 0.1
+  agent_runnable: true
+reproduction:
+  minimized: true
+  load_bearing_elements:
+  - raw-regex double escaping
+  - one valid SKILL.md
+hypotheses:
+- rank: 1
+  cause: The raw regular expression double-escapes whitespace and newline tokens.
+  prediction: Replacing double escapes with single regex escapes matches the frontmatter
+    lines.
+  probe: Run the original and corrected patterns against a single valid frontmatter
+    string.
+- rank: 2
+  cause: The skill frontmatter contains unexpected line endings.
+  prediction: Normalizing CRLF to LF makes the original pattern pass.
+  probe: Compare repr() and normalized input.
+- rank: 3
+  cause: The validator reads a different file than expected.
+  prediction: Printing the resolved path shows a non-SKILL file.
+  probe: Inspect the resolved glob results.
+fix:
+  applied: true
+  regression_green: true
+  original_scenario_green: true
+  debug_cleanup_complete: true
+retry:
+  requested: false
+  changed_variable: null
+  attempts_used: 0
+  budget: 0
