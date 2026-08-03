@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+scenario_id: ACTION-COMPLETE-STATE-STALE
+title: GitHub Action completed but canonical task state was not finalized
+scenario_type: completed_run_unfinalized
+facts:
+  run_status: completed
+  canonical_status: RUNNING
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: false
+  changed_variable: null
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PASS, spec: PASS, evidence: PASS}
+  preserve_evidence: true
+  evidence_paths: [actions/conclusion.json, artifacts/result.zip]
+  resume_locator: {task_id: example, state_path: docs/implementation/example/task_state.yaml}
+  next_action: reconcile existing run outputs and finalize state without rerunning the job
+expected:
+  decision: RECONCILE_STATE_FROM_EXISTING_RUN
+  task_status: VERIFYING
+  human_gate: null
+  rerun: false
