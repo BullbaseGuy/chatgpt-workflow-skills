@@ -6,26 +6,25 @@
 - Branch: `agent/chatgpt-workflow-skills-v1`
 
 ## Verified completed
-- W00–W06 adoption, shared rules, routing, supervision, diagnosis, evidence, architecture,
-  acceptance, and PowerShell manual wizard are complete.
-- W07 adds seven executable historical scenarios, a pinned result snapshot, and mutation tests.
-- The scenarios distinguish live long Actions, stale canonical state, x_scrap cursor/429,
-  Bark real-device acceptance, F10 material source conflicts, Pine UI acceptance, and task-id resume.
-- Local W07 validation passed 7/7 scenarios and 4/4 mutation tests.
-- All 10 required skills exist; Codex/model invocation count remains `0`.
+- W00–W07 core skills, rules, deterministic validators, PowerShell wizard, and historical regressions are complete.
+- W08 provides one manifest-backed source for native ChatGPT Skills and ChatGPT Project + GitHub use.
+- The release payload contains 10 skills, 9 references, 7 templates, and 2 license files, each locked by Git blob SHA.
+- Local release tests passed 5/5: exact revision, idempotency, tamper detection, context-pointer closure, and native bundle generation.
+- Linux and Windows install-compatibility workflows are committed; final remote Checks are part of W09.
+- Codex/model invocation count remains `0`.
 
 ## Current frontier
-- `W08` — native ChatGPT Skills and ChatGPT Project + GitHub dual deployment.
+- `W09` — integrate `BullbaseGuy/demo-project` by immutable reference and perform final acceptance.
 
 ## Active blockers
 None.
 
 ## Exact next action
-Create an immutable-revision consumer manifest, PowerShell installer/updater, consumer lock format,
-deployment guides, hash/compatibility validators and CI coverage. Prove idempotent local installation
-without executing unpinned remote code, write W08 result, and continue to W09.
+Create a `demo-project` integration branch, add a lock file pinned to
+`22e10ad9fef0a0de828dfe0b48fafa1802928019`, add compatibility validation and documentation without
+copying skill bodies, open reviewable PRs in both repositories, verify their Checks, write the final
+Standards/Spec/Evidence/Security/Resume acceptance report, and close canonical state.
 
 ## Do not repeat
-The source-of-truth separation, decision modes, PowerShell-first policy, secret handling, diagnosis
-policy, evidence schema, and historical workflow outcomes are settled. Do not ask the user to choose
-them again.
+Do not revisit adopted skill names, decision modes, source-of-truth separation, PowerShell-first
+policy, evidence schema, release payload, or revision policy unless new evidence shows a real defect.
