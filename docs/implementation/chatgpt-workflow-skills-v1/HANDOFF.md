@@ -6,22 +6,26 @@
 - Branch: `agent/chatgpt-workflow-skills-v1`
 
 ## Verified completed
-- W00–W05 adoption, rules, routing, supervision, diagnosis, evidence, architecture, and acceptance.
-- W06 PowerShell manual wizard, manifest schema, secure/idempotent template, validator, and tests.
-- All 10 required skills now exist.
-- Static safety rejects secrets in GitHub Variables, shell metacharacters, missing irreversible
-  confirmation, credential-like samples, `Invoke-Expression`, and command-line secret bodies.
-- 30 deterministic tests pass; Codex/model invocation count remains `0`.
+- W00–W06 adoption, shared rules, routing, supervision, diagnosis, evidence, architecture,
+  acceptance, and PowerShell manual wizard are complete.
+- W07 adds seven executable historical scenarios, a pinned result snapshot, and mutation tests.
+- The scenarios distinguish live long Actions, stale canonical state, x_scrap cursor/429,
+  Bark real-device acceptance, F10 material source conflicts, Pine UI acceptance, and task-id resume.
+- Local W07 validation passed 7/7 scenarios and 4/4 mutation tests.
+- All 10 required skills exist; Codex/model invocation count remains `0`.
 
 ## Current frontier
-- `W07` — seven historical workflow regression scenarios and aggregate runner.
+- `W08` — native ChatGPT Skills and ChatGPT Project + GitHub dual deployment.
 
 ## Active blockers
 None.
 
 ## Exact next action
-Encode the seven required historical scenarios with common assertions, implement the regression
-runner, execute all scenarios plus the full validation suite, write W07 result, and continue to W08.
+Create an immutable-revision consumer manifest, PowerShell installer/updater, consumer lock format,
+deployment guides, hash/compatibility validators and CI coverage. Prove idempotent local installation
+without executing unpinned remote code, write W08 result, and continue to W09.
 
 ## Do not repeat
-PowerShell-first and secret handling are settled. No real external configuration is required in this task.
+The source-of-truth separation, decision modes, PowerShell-first policy, secret handling, diagnosis
+policy, evidence schema, and historical workflow outcomes are settled. Do not ask the user to choose
+them again.
