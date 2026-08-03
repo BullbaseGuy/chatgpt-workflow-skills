@@ -9,6 +9,7 @@ from .evidence import (
     validate_evidence_record,
     validate_evidence_records,
 )
+from .wizard import load_manifest, validate_manifest, validate_script
 from .state import (
     StateError,
     classify_run_health,
@@ -34,4 +35,7 @@ __all__ = [
     "validate_evidence_records",
     "validate_repro_manifest",
     "validate_state",
+    "load_manifest",
+    "validate_manifest",
+    "validate_script",
 ]

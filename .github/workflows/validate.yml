@@ -48,5 +48,12 @@ jobs:
       - name: Validate acceptance fixture
         run: python scripts/validate_acceptance.py tests/fixtures/acceptance_pass.yaml --require-completion
 
+
+      - name: Validate PowerShell manual wizard
+        run: >-
+          python scripts/validate_wizard.py
+          --manifest examples/manual-wizard/stages.example.json
+          --script templates/manual-wizard.template.ps1
+
       - name: Run deterministic tests
         run: python -m unittest discover -s tests -p "test_*.py" -v

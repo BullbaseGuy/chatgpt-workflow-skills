@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Configure example GitHub Actions integration",
+  "repository": "BullbaseGuy/example-repository",
+  "stages": [
+    {
+      "id": "open-actions-secrets",
+      "title": "Open Actions secrets settings",
+      "type": "open_url",
+      "url": "https://github.com/BullbaseGuy/example-repository/settings/secrets/actions"
+    },
+    {
+      "id": "capture-service-key",
+      "title": "Store the service API key",
+      "type": "capture",
+      "name": "SERVICE_API_KEY",
+      "prompt": "Paste the service API key",
+      "secret": true,
+      "destinations": [
+        {
+          "type": "env",
+          "path": ".env"
+        },
+        {
+          "type": "github_secret",
+          "repository": "BullbaseGuy/example-repository"
+        }
+      ]
+    },
+    {
+      "id": "capture-region",
+      "title": "Store the public service region",
+      "type": "capture",
+      "name": "SERVICE_REGION",
+      "prompt": "Enter the public service region",
+      "secret": false,
+      "destinations": [
+        {
+          "type": "env",
+          "path": ".env"
+        },
+        {
+          "type": "github_variable",
+          "repository": "BullbaseGuy/example-repository"
+        }
+      ]
+    },
+    {
+      "id": "verify-gh",
+      "title": "Verify GitHub configuration names",
+      "type": "command",
+      "program": "gh",
+      "arguments": [
+        "secret",
+        "list",
+        "--repo",
+        "BullbaseGuy/example-repository"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "irreversible": false
+    },
+    {
+      "id": "wait-propagation",
+      "title": "Wait for settings propagation",
+      "type": "pause",
+      "seconds": 5
+    }
+  ]
+}
