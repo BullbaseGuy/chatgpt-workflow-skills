@@ -1,0 +1,10 @@
+schema_version: 1.0.0
+updated_at_utc: '2026-08-03T17:27:38Z'
+active_tasks:
+- task_id: chatgpt-workflow-skills-v1
+  title: Build reusable ChatGPT Web + GitHub Actions workflow skills
+  repository: BullbaseGuy/chatgpt-workflow-skills
+  branch: agent/chatgpt-workflow-skills-v1
+  state_path: docs/implementation/chatgpt-workflow-skills-v1/task_state.yaml
+  status: DONE
+  current_work_package: null

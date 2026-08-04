@@ -1,0 +1,45 @@
+W08 dual deployment validation
+Initial local gate UTC: 2026-08-03T16:58:11Z
+Final remote gate UTC: 2026-08-03T17:24:23Z
+Release payload commit: 74a3cb0cf4eebb406782ca3360318f1dce0f6c6d
+
+Manifest inventory:
+- files: 28
+- skills: 10
+- references: 9
+- templates: 7
+- licenses: 2
+- revision policy: exact-40-hex-commit
+- per-file identity: Git blob SHA
+
+Local commands:
+  python -m compileall -q scripts tests
+  python -m unittest tests.test_release -v
+Result:
+  Ran 5 tests
+  OK
+
+Tested behavior:
+- valid manifest accepted
+- exact revision required; branch name rejected
+- first install returns INSTALLED
+- second verified install returns UNCHANGED
+- modified installed file is rejected as a blob mismatch
+- missing context pointer is rejected
+- 10 native skill bundles are generated from one source tree
+
+PowerShell and remote execution evidence:
+- PowerShell 7 is required.
+- The installer contains no Invoke-Expression and executes no downloaded payload.
+- Offline UTF-8 text is normalized to Git LF bytes before blob verification, preventing Windows checkout CRLF from invalidating the immutable manifest.
+- GitHub Actions run 30835973435: Validate install compatibility = success; linux-release and windows-powershell jobs both passed.
+- GitHub Actions run 30835973467: Validate workflow skills = success.
+
+Diagnosed corrections before the final green gate:
+- setup-python pip caching now explicitly points to requirements-dev.txt.
+- Windows offline source normalization now matches Git blob identity.
+- Both corrections were triggered by exact failed logs; no blind rerun was used.
+
+Codex/model execution:
+  enabled=false
+  codex_invocations=0

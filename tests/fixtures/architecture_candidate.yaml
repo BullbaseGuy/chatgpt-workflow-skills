@@ -1,0 +1,16 @@
+candidate_id: ARCH-001
+name: Consolidate canonical-state validation behind one interface
+modules:
+- scripts/workflow_skills/state.py
+- scripts/validate_state.py
+problem: Callers otherwise need to know frontier, timestamps, completion, and model-policy rules separately.
+evidence_ids:
+- EV-W05-TEST-001
+current_seam: Multiple validation functions and caller-side orchestration
+proposed_interface: validate_task_repository(repo_root, state_path) -> structured report
+locality_and_leverage: One interface keeps state invariants local and reusable by CI and supervisors.
+verification_seam: CLI exit status plus structured report through the public validator
+before: Callers sequence individual checks and can omit an invariant.
+after: One deep validator owns all canonical-state invariants.
+migration_risk: Low; preserve the current CLI while moving orchestration behind it.
+recommendation_strength: Worth exploring

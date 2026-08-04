@@ -1,0 +1,58 @@
+[
+  {
+    "scenario_id": "ACTION-LIVE-HEARTBEAT",
+    "passed": true,
+    "decision": "CONTINUE_MONITORING",
+    "task_status": "RUNNING",
+    "human_gate": null,
+    "rerun": false
+  },
+  {
+    "scenario_id": "ACTION-COMPLETE-STATE-STALE",
+    "passed": true,
+    "decision": "RECONCILE_STATE_FROM_EXISTING_RUN",
+    "task_status": "VERIFYING",
+    "human_gate": null,
+    "rerun": false
+  },
+  {
+    "scenario_id": "X-SCRAP-CURSOR-429",
+    "passed": true,
+    "decision": "DIAGNOSE_AND_RESUME_FROM_CURSOR",
+    "task_status": "BLOCKED_AUTO",
+    "human_gate": null,
+    "rerun": true
+  },
+  {
+    "scenario_id": "BARK-BACKGROUND-DUPLICATE",
+    "passed": true,
+    "decision": "RUN_HARNESS_THEN_REQUEST_DEVICE_ACCEPTANCE",
+    "task_status": "NEEDS_HUMAN",
+    "human_gate": "MANUAL_NOTIFICATION_ACCEPTANCE",
+    "rerun": false
+  },
+  {
+    "scenario_id": "F10-MATERIAL-SOURCE-CONFLICT",
+    "passed": true,
+    "decision": "PRESERVE_CONFLICT_AND_REQUEST_DECISION",
+    "task_status": "NEEDS_HUMAN",
+    "human_gate": "MATERIAL_SOURCE_CONFLICT",
+    "rerun": false
+  },
+  {
+    "scenario_id": "PINE-COMPILE-UI-MISMATCH",
+    "passed": true,
+    "decision": "REJECT_PREMATURE_ACCEPTANCE_AND_REQUEST_UI_CHECK",
+    "task_status": "NEEDS_HUMAN",
+    "human_gate": "MANUAL_UI_ACCEPTANCE",
+    "rerun": false
+  },
+  {
+    "scenario_id": "RESUME-FROM-TASK-ID",
+    "passed": true,
+    "decision": "RESUME_FROM_CANONICAL_FRONTIER",
+    "task_status": "RUNNING",
+    "human_gate": null,
+    "rerun": false
+  }
+]

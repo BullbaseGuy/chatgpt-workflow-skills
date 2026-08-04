@@ -1,0 +1,23 @@
+schema_version: 1.0.0
+scenario_id: F10-MATERIAL-SOURCE-CONFLICT
+title: Official disclosure is absent while a secondary source provides a material value
+scenario_type: source_conflict
+facts:
+  official_value: null
+  secondary_value: 218372
+  material_to_decision: true
+  inputs_already_available: true
+  user_questions_asked: 0
+  tight_feedback_loop: false
+  changed_variable: null
+  same_invocation_without_new_evidence: false
+  acceptance_axes: {standards: PASS, spec: PASS, evidence: FAIL}
+  preserve_evidence: true
+  evidence_paths: [evidence/official-search.jsonl, evidence/secondary-record.jsonl]
+  resume_locator: {task_id: f10-validation, claim_id: C218372}
+  next_action: retain SOURCE_CONFLICT and present a single decision-ready human gate
+expected:
+  decision: PRESERVE_CONFLICT_AND_REQUEST_DECISION
+  task_status: NEEDS_HUMAN
+  human_gate: MATERIAL_SOURCE_CONFLICT
+  rerun: false

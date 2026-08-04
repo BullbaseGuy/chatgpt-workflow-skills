@@ -1,0 +1,33 @@
+W07 historical regression validation
+UTC: 2026-08-03T16:42:58Z
+
+Command:
+  python scripts/run_regression_scenarios.py
+Result:
+  scenario_count=7
+  passed=7
+  snapshot_match=PASS
+
+Decisions:
+- ACTION-LIVE-HEARTBEAT -> CONTINUE_MONITORING / RUNNING / no human gate
+- ACTION-COMPLETE-STATE-STALE -> RECONCILE_STATE_FROM_EXISTING_RUN / VERIFYING
+- X-SCRAP-CURSOR-429 -> DIAGNOSE_AND_RESUME_FROM_CURSOR / BLOCKED_AUTO / bounded non-blind retry
+- BARK-BACKGROUND-DUPLICATE -> RUN_HARNESS_THEN_REQUEST_DEVICE_ACCEPTANCE / NEEDS_HUMAN / MANUAL_NOTIFICATION_ACCEPTANCE
+- F10-MATERIAL-SOURCE-CONFLICT -> PRESERVE_CONFLICT_AND_REQUEST_DECISION / NEEDS_HUMAN / MATERIAL_SOURCE_CONFLICT
+- PINE-COMPILE-UI-MISMATCH -> REJECT_PREMATURE_ACCEPTANCE_AND_REQUEST_UI_CHECK / NEEDS_HUMAN / MANUAL_UI_ACCEPTANCE
+- RESUME-FROM-TASK-ID -> RESUME_FROM_CANONICAL_FRONTIER / RUNNING
+
+Command:
+  python -m unittest tests.test_regression -v
+Result:
+  Ran 4 tests in 0.025s
+  OK
+
+Mutation evidence:
+- repeated user question is rejected
+- blind rerun is rejected
+- incorrect human-gate expectation is rejected
+
+Codex/model execution:
+  enabled=false
+  codex_invocations=0

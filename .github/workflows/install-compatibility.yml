@@ -1,0 +1,81 @@
+name: Validate install compatibility
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: install-compatibility-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Validate pinned release manifest
+        run: python scripts/validate_release.py
+
+      - name: Run release unit tests
+        run: python -m unittest tests.test_release -v
+
+      - name: Build native ChatGPT skill bundles
+        run: python scripts/build_native_skill_bundles.py --output "$RUNNER_TEMP/native-skills"
+
+      - name: Verify idempotent local consumer install
+        shell: bash
+        run: |
+          set -euo pipefail
+          revision="$(git rev-parse HEAD)"
+          destination="$RUNNER_TEMP/consumer/.agents/workflow-skills"
+          first="$(python scripts/simulate_install.py --destination "$destination" --revision "$revision")"
+          second="$(python scripts/simulate_install.py --destination "$destination" --revision "$revision")"
+          test "$first" = "INSTALLED"
+          test "$second" = "UNCHANGED"
+          test -f "$destination/skills/workflow-router/SKILL.md"
+
+  windows-powershell:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+        with:
+          persist-credentials: false
+
+      - name: Run the PowerShell installer twice from local pinned source
+        shell: pwsh
+        run: |
+          $destination = Join-Path $env:RUNNER_TEMP 'consumer\.agents\workflow-skills'
+          $first = & ./scripts/install-workflow-skills.ps1 `
+            -Revision $env:GITHUB_SHA `
+            -OfflineSourceRoot $PWD `
+            -Destination $destination
+          $second = & ./scripts/install-workflow-skills.ps1 `
+            -Revision $env:GITHUB_SHA `
+            -OfflineSourceRoot $PWD `
+            -Destination $destination
+          if ($first -notmatch '^INSTALLED ') { throw "Unexpected first result: $first" }
+          if ($second -notmatch '^UNCHANGED ') { throw "Unexpected second result: $second" }
+          $lock = Get-Content (Join-Path $destination '.workflow-skills.lock.json') -Raw | ConvertFrom-Json
+          if ($lock.revision -ne $env:GITHUB_SHA) { throw 'Lock revision mismatch' }
+          if ($lock.installed_file_count -ne 28) { throw 'Installed file count mismatch' }

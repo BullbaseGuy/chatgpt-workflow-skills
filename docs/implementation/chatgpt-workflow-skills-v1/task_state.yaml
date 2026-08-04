@@ -1,0 +1,103 @@
+schema_version: 1.0.0
+task_id: chatgpt-workflow-skills-v1
+title: Build reusable ChatGPT Web + GitHub Actions workflow skills
+repository: BullbaseGuy/chatgpt-workflow-skills
+branch: agent/chatgpt-workflow-skills-v1
+decision_mode: AUTO
+status: DONE
+stage: W09
+execution_status: COMPLETED
+acceptance_status: PASS
+security_status: PASS
+model_execution:
+  enabled: false
+  codex_invocations: 0
+created_at_utc: '2026-08-03T15:26:23Z'
+updated_at_utc: '2026-08-03T17:27:38Z'
+last_heartbeat_utc: '2026-08-03T17:27:38Z'
+completed_at_utc: '2026-08-03T17:27:38Z'
+source_baselines:
+  mattpocock_skills: 2ab958093e83e0ec752e6c1c5932da465bf23e0c
+  demo_project: ff6619b1f0ef6797ad1ca09fffa5db9475dc2482
+release_payload_commit: 74a3cb0cf4eebb406782ca3360318f1dce0f6c6d
+pull_requests:
+  skills_source: BullbaseGuy/chatgpt-workflow-skills#1
+  scaffold_integration: BullbaseGuy/demo-project#2
+validated_runs:
+  skills_source:
+  - 30835973435
+  - 30835973467
+  scaffold:
+  - 30836366525
+  - 30836366028
+  - 30836366871
+  - 30836366162
+final_acceptance_report: docs/implementation/chatgpt-workflow-skills-v1/ACCEPTANCE_REPORT.md
+frontier: []
+active_blockers: []
+human_gate: null
+work_packages:
+- id: W00
+  status: DONE
+  blocked_by: []
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W00_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W00_result.md
+  checkpoint_commit: null
+- id: W01
+  status: DONE
+  blocked_by: [W00]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W01_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W01_result.md
+  checkpoint_commit: null
+- id: W02
+  status: DONE
+  blocked_by: [W01]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W02_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W02_result.md
+  checkpoint_commit: null
+- id: W03
+  status: DONE
+  blocked_by: [W02]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W03_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W03_result.md
+  checkpoint_commit: null
+- id: W04
+  status: DONE
+  blocked_by: [W03]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W04_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W04_result.md
+  checkpoint_commit: null
+- id: W05
+  status: DONE
+  blocked_by: [W04]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W05_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W05_result.md
+  checkpoint_commit: null
+- id: W06
+  status: DONE
+  blocked_by: [W05]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W06_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W06_result.md
+  checkpoint_commit: null
+- id: W07
+  status: DONE
+  blocked_by: [W06]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W07_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W07_result.md
+  checkpoint_commit: null
+- id: W08
+  status: DONE
+  blocked_by: [W07]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W08_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W08_result.md
+  checkpoint_commit: null
+- id: W09
+  status: DONE
+  blocked_by: [W08]
+  plan_path: docs/implementation/chatgpt-workflow-skills-v1/W09_plan.md
+  result_path: docs/implementation/chatgpt-workflow-skills-v1/W09_result.md
+  checkpoint_commit: null
+verification:
+  standards: PASS
+  spec: PASS
+  evidence: PASS
